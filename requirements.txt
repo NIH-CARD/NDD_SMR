@@ -2,6 +2,7 @@ pip
 pandas
 scipy
 streamlit
+google
 streamlit-aggrid==0.2.3.post2
 gspread==5.7.2
 gspread_pandas==3.2.2
