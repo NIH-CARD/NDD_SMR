@@ -1,5 +1,8 @@
+pip
+pandas
+scipy
+streamlit
+streamlit-aggrid==0.2.3.post2
 gspread==5.7.2
 gspread_pandas==3.2.2
-pandas==1.4.4
 protobuf==4.22.1
-scipy==1.7.3
