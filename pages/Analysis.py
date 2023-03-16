@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from scipy.stats import rankdata
 
-@st.cache(show_spinner=False)
+@st.cache_data
 
 def load_data(url, sheet_name="Sheet"):
     sh = st.session_state['client_auth'].open_by_url(url)
