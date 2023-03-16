@@ -19,4 +19,4 @@ st.write("""1. GTEx v8 eQTL data
 - [SMR formatted and HG19/GR37 source](https://yanglab.westlake.edu.cn/software/smr/#DataResource)""")
 st.write("Therapeutic gene targets list: [Finan et al., 2017](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6321762/) and [Drug Gene Interaction Database - DGIdb](https://www.dgidb.org/)")
 st.write("Data curated by NIH CARD and Data Tecnica International.")
-st.write("Github with code: [NIH CARD Github] (https://github.com/NIH-CARD/NDD_SMR)")
+st.write("Github with code: [NIH CARD Github](https://github.com/NIH-CARD/NDD_SMR)")
