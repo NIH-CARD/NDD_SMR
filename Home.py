@@ -25,7 +25,7 @@ client = gspread.authorize(credentials)
 # add auth keys to session state
 st.session_state['client_auth'] = client
 
-@st.cache(show_spinner=False)
+@st.cache_data
 
 def load_data(url, sheet_name="Sheet"):
     sh = client.open_by_url(url)
