@@ -14,7 +14,9 @@ st.write("""
 6. PSP - [Hoglinger 2011](https://pubmed.ncbi.nlm.nih.gov/21685912/)""")
 st.write("Reference Panel: 1000 Genomes")
 st.write("Omic Data Sources: Available in SMR ready format [here](https://yanglab.westlake.edu.cn/software/smr/#DataResource)")
-st.write("""1. GTEx v8 eQTL data <br> - [Original Source](https://www.gtexportal.org/home/datasets) <br> - [SMR formatted and HG19/GR37 source](https://yanglab.westlake.edu.cn/software/smr/#DataResource)""")
+st.write("""1. GTEx v8 eQTL data 
+- [Original Source](https://www.gtexportal.org/home/datasets) 
+- [SMR formatted and HG19/GR37 source](https://yanglab.westlake.edu.cn/software/smr/#DataResource)""")
 st.write("Therapeutic gene targets list: [Finan et al., 2017](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6321762/) and [Drug Gene Interaction Database - DGIdb](https://www.dgidb.org/)")
 st.write("Data curated by NIH CARD and Data Tecnica International.")
 st.write("Github with code: [NIH CARD Github] (https://github.com/NIH-CARD/NDD_SMR)")
