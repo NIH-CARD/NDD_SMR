@@ -157,16 +157,19 @@ with st.form("Filter_Results"):
     
     if submitted:
         
+        # p < 2.95e-06 threshold
         if sig_thresh == sig_opt[1]:
-            result_filter_df = load_data(st.secrets['adjusted_sig'])
+            adj_hits_df = load_data(st.secrets['adjusted_sig'])
+            result_filter_df = create_df(adj_hits_df, diseases, omics)
             # add adj_df to session state
-            st.session_state['sig5_data'] = result_filter_df
+            st.session_state['sig5_data'] = adj_hits_df
             st.session_state['filterdf'] = result_filter_df       
             st.session_state['filter_submit'] = 'run' 
+        # p < 0.05 threshold
         else:
-            result_filter_df = main_df
+            result_filter_df = create_df(main_df, diseases, omics)
             st.session_state['filterdf'] = result_filter_df       
-            st.session_state['filter_submit'] = 'run'     
+            st.session_state['filter_submit'] = 'run'          
 
 if st.session_state['filter_submit'] == 'run':
     st.dataframe(st.session_state['filterdf'])
