@@ -43,6 +43,7 @@ st.title("OmicSynth Functional NDD Gene Browser")
 st.markdown("""Welcome to OmicSynth's Neurodegenrative Disorders functionl analysis browser!
             This application allows you to browse SMR data from our manuscript and conduct customized analysis. 
             Please report any issues, provide feedback, or ask general questions to chelsea.alvarado@nih.gov""" ) 
+st.sidebar.success("Options")
 
 
 
