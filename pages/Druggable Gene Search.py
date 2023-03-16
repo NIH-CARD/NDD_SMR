@@ -76,7 +76,7 @@ if 'pre_res_df' not in st.session_state:
     st.session_state['pre_res_df'] = None
 
 # load in druggable genome list
-with st.spinner('Loading in druggable gene data. Thank you for your patience.'):
+with st.spinner('Loading in druggable gene data. This may take up to a minute to load - thank you for your patience.'):
     drug_df = load_data(st.secrets['drug_db'])
     st.session_state['drugdf'] = drug_df
 
