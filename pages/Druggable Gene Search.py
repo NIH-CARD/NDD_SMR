@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-@st.cache
+@st.cache(show_spinner = False)
 def load_data(url, sheet_name="Sheet"):
     sh = st.session_state['client_auth'].open_by_url(url)
     df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
