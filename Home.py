@@ -6,6 +6,7 @@ import pandas as pd
 import gspread 
 from gspread_pandas import Spread, Client
 from google.oauth2.service_account import Credentials
+from PIL import Image
 
 if 'client_auth' not in st.session_state: # create session state variable for client auth 
         st.session_state['client_auth'] = None
@@ -49,4 +50,11 @@ with st.spinner('Loading in data ... only happens once :)'):
     main_df = create_main()
     st.session_state['main_data'] = main_df
     st.success('Done!')
+
+# add CARD logo
+card_img = Image.open('/img/CARD-logo-white-print.png')
+dti_img = Image.open('/img/dti_img.jpeg')
+
+st.sidebar.image(card_img)
+st.sidebar.image(dti_img)
 
