@@ -1,4 +1,5 @@
 import streamlit as st
+from PIL import Image
 
 st.title('OmicSynth')
 
@@ -95,3 +96,10 @@ with st.expander("Additional Data"):
 
         
 st.write("Data curated by NIH CARD and Data Tecnica International.")
+
+# add CARD logo
+card_img = Image.open('img/CARD-logo-white-print.png')
+dti_img = Image.open('img/dti_img.jpeg')
+
+st.sidebar.image(card_img)
+st.sidebar.image(dti_img)
