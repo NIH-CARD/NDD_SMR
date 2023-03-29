@@ -101,5 +101,5 @@ st.write("Data curated by NIH CARD and Data Tecnica International.")
 card_img = Image.open('img/CARD-logo-white-print.png')
 dti_img = Image.open('img/dti_img.jpeg')
 
-st.image(card_img)
-st.image(dti_img)
+st.sidebar.image(card_img)
+st.sidebar.image(dti_img)
