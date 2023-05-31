@@ -7,7 +7,6 @@ library(foreach)
 if (file.exists('session.Rdata')) {
     load('session.Rdata')
 } else {
-    goi_filename <- 'genes_of_interest.tsv'
     loom_obj <- '/data/CARD_AA/users/wellerca/data/adult_human_20221007.loom'
     data_dir <- '/data/CARD_AA/users/wellerca/data/'
 
