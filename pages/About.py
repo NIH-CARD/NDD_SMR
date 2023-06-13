@@ -80,7 +80,7 @@ with st.expander("*-Omic Details"):
             
             st.write('''pQTL data is available for access [here](https://www.niagads.org/datasets/ng00102). 
             Summary statistics data are freely available without requiring NIAGADS access by emailing niagads@pennmedicine.upenn.edu 
-            to set up an FTP transfer of the data ''')
+            to set up a FTP transfer of the data ''')
             st.write('''
             1. Cerebrospinal Fluid (CSF)
             2. Blood Plasma
@@ -93,6 +93,7 @@ with st.expander("Additional Data"):
     st.write("Reference Panel: [1000 Genomes Phase 3](https://www.internationalgenome.org/data-portal/data-collection/phase-3)")
     st.write("Therapeutic gene targets list: [Finan et al., 2017](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6321762/) and [Drug Gene Interaction Database - DGIdb](https://www.dgidb.org/)")
     st.write("Github with code: [NIH CARD Github](https://github.com/NIH-CARD/NDD_SMR)")
+    st.write("Single Cell Data [Siletti et al (2022)](https://github.com/linnarsson-lab/adult-human-brain)")
 
         
 st.write("Data curated by NIH CARD and Data Tecnica International.")
