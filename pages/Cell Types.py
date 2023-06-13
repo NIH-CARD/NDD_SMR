@@ -50,11 +50,15 @@ with st.container():
 
     if image_pick == 'Mean Expression Percentile Rank':
         st.image(st.session_state['mean_all_img'], caption = 'Mean Expression Percentile Rank (EPR)', use_column_width='auto')
+        st.write('Disease relevant cell types indicated by *')
     elif image_pick == 'Median Expression Percentile Rank':
         st.image(st.session_state['median_all_img'], caption = 'Median Expression Percentile Rank (EPR)', use_column_width='auto')
+        st.write('Disease relevant cell types indicated by *')
     elif image_pick == 'Mean and Median Reduced Comparison':
         st.image(st.session_state['both_img'], caption = 'Mean and Median Reduced Comparison (EPR). Genes with 0 median EPR excluded.', use_column_width='auto')
+        st.write('Disease relevant cell types indicated by *')
     elif image_pick == 'Binned Mean Expression Percentile Ranks':
         st.image(st.session_state['mean_bin_img'], caption = 'Binned Mean Expression Percentile Ranks (EPR). Excludes genes with only low expression (EPR < 10)', use_column_width='auto')
+        st.write('Disease relevant cell types indicated by *')
     else:
         print('Please select an option')
