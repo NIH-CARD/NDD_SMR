@@ -22,7 +22,7 @@ if 'binned_epr' not in st.session_state: # create session state
 
 st.title('Cell Types')
 
-st.write("Explore scRNA-seq data across 31 single cell types and 159 significant genes")
+st.write("Explore snRNA-seq data across 31 single cell types and 159 significant genes")
 
 # load in EPR data
 st.session_state['mean_epr'] = pd.read_csv('./data/exp_goi_celltypes_ord_mean.csv').rename({'Unnamed: 0': 'Gene'}, axis = 1)
