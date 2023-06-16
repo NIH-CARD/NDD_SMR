@@ -101,11 +101,6 @@ if 'gene_results_df' not in st.session_state:
 
 # session state variables for parameter buttons
 
-if 'omic_count_gene' not in st.session_state:
-    st.session_state['omic_count_gene'] = False
-if 'dx_count_gene' not in st.session_state:
-    st.session_state['dx_count_gene'] = False
-
 # session state variables for count dfs
 if 'omic_count_gene' not in st.session_state:
     st.session_state['omic_count_gene'] = False
@@ -176,13 +171,6 @@ with st.container():
             st.session_state['heidi'] = heidival
 
 
-            # return count df
-            count_omic = st.radio('Would you like to return a dataframe that shows how many times a gene shows up in each omic?', ('Yes', 'No'))
-            st.session_state['omic_count_gene'] = count_omic
-            count_dx = st.radio('Would you like to return a dataframe that shows how many times a gene shows up in each disease?', ('Yes', 'No'))
-            st.session_state['dx_count_gene'] = count_dx
-
-
             submitted = st.form_submit_button("Search!")
             
             
@@ -192,14 +180,52 @@ with st.container():
         if st.session_state['gene_status'] == 'run':
             # make sure gene list is correct
             not_genes = []
+            yes_gene = []
             for gene in st.session_state['genes']:
-                if gene not in st.session_state['genes_list']:
+                if gene not in st.session_state['genes_list']: # check against the genes available in main data frame
                     not_genes.append(gene)
+                else:
+                    yes_gene.append(gene)
             
             if len(not_genes) >= 2:
                 st.write(f'{", ".join(not_genes)} are not recognized or are not in our dataset. Please check your list and try again.')
+                if len(yes_gene) > 0:
+                    st.write(f'Valid gene(s): {", ".join(yes_gene)}')
+                    gene_results_df = main_df[main_df['Gene'].isin(st.session_state['genes'])]
+                    p_val = st.session_state['pval']
+                    heidi_val = st.session_state['heidi']
+                    gene_results_df = gene_results_df.query(f'p_SMR_multi < {p_val} & p_HEIDI > {heidi_val}')
+                    st.session_state['gene_results_df'] = gene_results_df
+                    st.subheader('Results dataframe')
+                    st.dataframe(st.session_state['gene_results_df'])
+
+                    st.download_button(label="Download results as CSV", data=convert_df(st.session_state['gene_results_df']), mime='text/csv')
+
+                    # return count df for genes that have data available if desired
+                    count_omic = st.radio('Would you like to return a dataframe that shows how many times a gene shows up in each omic?', ('No', 'Yes'))
+                    st.session_state['omic_count_gene'] = count_omic
+                    count_dx = st.radio('Would you like to return a dataframe that shows how many times a gene shows up in each disease?', ('No', 'Yes'))
+                    st.session_state['dx_count_gene'] = count_dx
+
             elif len(not_genes) == 1:
                 st.write(f'{not_genes[0]} is not recognized or is not in our dataset. Please check your gene and try again.')
+                if len(yes_gene) > 0:
+                    st.write(f'Valid gene(s): {", ".join(yes_gene)}')
+                    gene_results_df = main_df[main_df['Gene'].isin(st.session_state['genes'])]
+                    p_val = st.session_state['pval']
+                    heidi_val = st.session_state['heidi']
+                    gene_results_df = gene_results_df.query(f'p_SMR_multi < {p_val} & p_HEIDI > {heidi_val}')
+                    st.session_state['gene_results_df'] = gene_results_df
+                    st.subheader('Results dataframe')
+                    st.dataframe(st.session_state['gene_results_df'])
+
+                    st.download_button(label="Download results as CSV", data=convert_df(st.session_state['gene_results_df']), mime='text/csv')
+
+                    # return count df for genes that have data available if desired
+                    count_omic = st.radio('Would you like to return a dataframe that shows how many times a gene shows up in each omic?', ('No', 'Yes'))
+                    st.session_state['omic_count_gene'] = count_omic
+                    count_dx = st.radio('Would you like to return a dataframe that shows how many times a gene shows up in each disease?', ('No', 'Yes'))
+                    st.session_state['dx_count_gene'] = count_dx
             else:
                 gene_results_df = main_df[main_df['Gene'].isin(st.session_state['genes'])]
                 p_val = st.session_state['pval']
@@ -210,6 +236,13 @@ with st.container():
                 st.dataframe(st.session_state['gene_results_df'])
 
                 st.download_button(label="Download results as CSV", data=convert_df(st.session_state['gene_results_df']), mime='text/csv')
+
+
+                # return count df for genes that have data available if desired
+                count_omic = st.radio('Would you like to return a dataframe that shows how many times a gene shows up in each omic?', ('No', 'Yes'))
+                st.session_state['omic_count_gene'] = count_omic
+                count_dx = st.radio('Would you like to return a dataframe that shows how many times a gene shows up in each disease?', ('No', 'Yes'))
+                st.session_state['dx_count_gene'] = count_dx
 
             if st.session_state['omic_count_gene'] == 'Yes' and st.session_state['dx_count_gene'] == 'Yes':
                 # omic count
