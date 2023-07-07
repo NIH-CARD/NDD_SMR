@@ -19,6 +19,8 @@ if 'median_epr' not in st.session_state: # create session state
         st.session_state['median_epr'] = None
 if 'binned_epr' not in st.session_state: # create session state
         st.session_state['binned_epr'] = None
+if 'coloc_hits' not in st.session_state: # create session state
+        st.session_state['coloc_hits'] = None
 
 st.title('Cell Types')
 
@@ -28,6 +30,9 @@ st.write("Explore snRNA-seq data across 31 single cell types and 159 significant
 st.session_state['mean_epr'] = pd.read_csv('./data/exp_goi_celltypes_ord_mean.csv').rename({'Unnamed: 0': 'Gene'}, axis = 1)
 st.session_state['median_epr'] = pd.read_csv('./data/exp_goi_celltypes_ord_median.csv').rename({'Unnamed: 0': 'Gene'}, axis = 1)
 st.session_state['binned_epr'] = pd.read_csv('./data/binned_mean_epr.csv', index_col = 'Gene')
+
+# load in Coloc data
+st.session_state['coloc_hits'] = pd.read_csv('./data/coloc_hits.csv')
 
 # load in image data
 st.session_state['mean_all_img'] = Image.open('./data/all_mean.jpg')
@@ -43,6 +48,9 @@ with st.container():
           st.dataframe(st.session_state['median_epr'])
     with st.expander("Binned Mean Expression Rank Percentiles"):
           st.dataframe(st.session_state['binned_epr'])
+    with st.expander("Colocalization Results"):
+          st.markdown("Data from Alvarado et al. (2023) <sup>1</sup>", unsafe_allow_html=True)
+          st.dataframe(st.session_state['coloc_hits'])
 
 with st.container():
     st.header('Image Gallery')
@@ -62,3 +70,7 @@ with st.container():
         st.write('Disease relevant cell types indicated by *')
     else:
         print('Please select an option')
+with st.container():
+      st.header('References')
+      st.write('[1] Alvarado, C.X., Weller, C.A., Johnson, N.L., Leonard, H.L., Singleton, A.B., Reed, X., Blauewendraat, C., and Nalls, M.A. (2023). Human brain single nucleus cell type enrichments in neurodegenerative diseases.  Cold Spring Harbor Laboratory. ')
+      st.write('Link to preprint [here](https://www.medrxiv.org/content/10.1101/2023.06.30.23292084v1)')
