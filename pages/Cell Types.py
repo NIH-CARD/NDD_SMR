@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 from PIL import Image
 
+def load_data(url, sheet_name="Sheet"):
+    sh = st.session_state['client_auth'].open_by_url(url)
+    df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
+    return df
+
 #@st.cache_data
 # session state variables for smr data
 if 'mean_all_img' not in st.session_state: # create session state
@@ -20,7 +25,8 @@ if 'median_epr' not in st.session_state: # create session state
 if 'binned_epr' not in st.session_state: # create session state
         st.session_state['binned_epr'] = None
 if 'coloc_hits' not in st.session_state: # create session state
-        st.session_state['coloc_hits'] = None
+        st.session_state['coloc_hits'] = pd.DataFrame()
+
 
 st.title('Cell Types')
 
@@ -32,7 +38,8 @@ st.session_state['median_epr'] = pd.read_csv('./data/exp_goi_celltypes_ord_media
 st.session_state['binned_epr'] = pd.read_csv('./data/binned_mean_epr.csv', index_col = 'Gene')
 
 # load in Coloc data
-st.session_state['coloc_hits'] = pd.read_csv('./data/coloc_hits.csv')
+coloc_hits = load_data(st.secrets['coloc_url'])
+st.session_state['coloc_hits'] = coloc_hits
 
 # load in image data
 st.session_state['mean_all_img'] = Image.open('./data/all_mean.jpg')
