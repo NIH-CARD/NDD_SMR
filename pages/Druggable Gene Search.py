@@ -81,7 +81,7 @@ with st.spinner('Loading in druggable gene data. This may take up to a minute to
     st.session_state['drugdf'] = drug_df
 
 # get list of genes in db
-thera_genes = list(st.session_state['drugdf']['gene_name'])
+thera_genes = list(st.session_state['drugdf']['gene_name'].unique())
 
 # set ss variable for drug db genes
 st.session_state['thera_genes'] = thera_genes
