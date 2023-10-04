@@ -8,4 +8,4 @@ gspread==5.7.2
 gspread_pandas==3.2.2
 protobuf==3.20.3
 gcsfs==2023.9.2
-st_files_connection
+st-files-connection
