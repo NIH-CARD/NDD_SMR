@@ -1,12 +1,15 @@
 import streamlit as st
 import pandas as pd
 from scipy.stats import rankdata
+from st_files_connection import FilesConnection
 
 @st.cache_data
+def load_data(url, in_format = 'csv'):
+    # establish connection
+    conn = st.experimental_connection('gcs', type=FilesConnection)
 
-def load_data(url, sheet_name="Sheet"):
-    sh = st.session_state['client_auth'].open_by_url(url)
-    df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
+    # read in file
+    df = conn.read(url, input_format=in_format)
     return df
 
 def convert_df(df):
@@ -110,10 +113,17 @@ if 'z_df' not in st.session_state:
 if 'z_name' not in st.session_state:
     st.session_state['z_name'] = ''
 
+# pull main df with SMR data
 if isinstance(st.session_state['main_data'],pd.core.frame.DataFrame):
     main_df = st.session_state['main_data']
+else: # if not in session state load
+    main_df = load_data(st.secrets['all_associations'], 'parquet')
+
+# pull all sig (p < 0.05) SMR data (NOT ADJUSTED)
+if isinstance(st.session_state['mainsig_data'],pd.core.frame.DataFrame):
+    mainsig_df = st.session_state['mainsig_data']
 else:
-    main_df = load_data(st.secrets['simple_sig'])
+    mainsig_df = load_data(st.secrets['simple_sig'])
 
 st.title('Data Analysis')
 
@@ -149,7 +159,7 @@ with st.form("Filter_Results"):
     elif "NDD-related omics" in omics:
         omics = ndd_omics
     
-    sig_opt = ['p < 0.05 & p_HEIDI > 0.01', 'p < 2.95E-06 & p_HEIDI > 0.01']
+    sig_opt = ['p_SMRmulti < 0.05 & p_HEIDI > 0.01', 'p_SMRmulti < 2.95E-06 & p_HEIDI > 0.01']
     sig_thresh = st.multiselect('Please select a significance threshold to apply', sig_opt, help = 'Thresholds used in analysis. For custom threshold please go to our data browser')
 
 
@@ -167,7 +177,7 @@ with st.form("Filter_Results"):
             st.session_state['filter_submit'] = 'run' 
         # p < 0.05 threshold
         else:
-            result_filter_df = create_df(main_df, diseases, omics)
+            result_filter_df = create_df(mainsig_df, diseases, omics)
             st.session_state['filterdf'] = result_filter_df       
             st.session_state['filter_submit'] = 'run'          
 
@@ -180,7 +190,7 @@ if st.session_state['filter_submit'] == 'run':
         st.download_button(label="Download data as CSV", data=convert_df(st.session_state['filterdf']),file_name=output_name, mime='text/csv')
 
 st.title('Analysis')
-st.write(" Use your filtered data from above to run either multiple test correction, z-score calculation or both. If you would like to run these analysis on the whole dataset select 'All' for both the disease and omic choices above")
+st.write("Use your filtered data from above to run either multiple test correction, z-score calculation or both. If you would like to run these analysis on the whole dataset select 'All' for both the disease and omic choices above")
 
 with st.container():
     col1, col2= st.columns(2)
