@@ -53,10 +53,11 @@ if 'filterdf' not in st.session_state:
 if 'filter_submit' not in st.session_state:
     st.session_state['filter_submit'] = False
 
+# pull main df with SMR data
 if isinstance(st.session_state['main_data'],pd.core.frame.DataFrame):
     main_df = st.session_state['main_data']
-else:
-    main_df = load_data(st.secrets['simple_sig'])
+else: # if not in session state load
+    main_df = load_data(st.secrets['all_associations'], 'parquet')
 
 st.title('Data Browser')
 
