@@ -20,8 +20,8 @@ if 'main_data' not in st.session_state:
     st.session_state['main_data'] = load_data(st.secrets['all_associations'], 'parquet')
 
 # pull all sig (p < 0.05) SMR data (NOT ADJUSTED)
-if 'main_data' not in st.session_state:
-    mainsig_df = load_data(st.secrets['simple_sig'])
+if 'mainsig_data' not in st.session_state:
+    st.session_state['mainsig_data'] = load_data(st.secrets['simple_sig'])
 
 # df for drug database data
 if 'drugdf' not in st.session_state:
