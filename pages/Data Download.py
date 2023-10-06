@@ -37,7 +37,7 @@ st.write('Download source data. Data is also available on [Google Drive](https:/
 st.subheader('SMR results')
 # allow user to download results
 st.write('1. Download all unfilitered SMR associations')
-st.download_button(label="Unfilitered SMR associations as CSV", data=convert_df(main_df), mime='text/csv')
+st.download_button(label="Unfilitered SMR associations as CSV", data=convert_df(st.session_state['main_data']), mime='text/csv')
 st.markdown('2. Download all significant SMR associations (p<sub>SMRmulti</sub> < 0.05 & p<sub>HEIDI</sub> > 0.01)', unsafe_allow_html = True)
 st.download_button(label="Significant SMR associations as CSV", data=convert_df(mainsig_df), mime='text/csv')
 st.markdown('3. Download all adjusted significant SMR associations (p<sub>SMRmulti</sub> < 2.95E-06 & p<sub>HEIDI</sub> > 0.01)', unsafe_allow_html = True)
