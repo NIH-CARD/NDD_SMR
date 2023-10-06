@@ -20,9 +20,7 @@ if 'main_data' not in st.session_state:
     st.session_state['main_data'] = load_data(st.secrets['all_associations'], 'parquet')
 
 # pull all sig (p < 0.05) SMR data (NOT ADJUSTED)
-if isinstance(st.session_state['mainsig_data'],pd.core.frame.DataFrame):
-    mainsig_df = st.session_state['mainsig_data']
-else:
+if 'main_data' not in st.session_state:
     mainsig_df = load_data(st.secrets['simple_sig'])
 
 # df for drug database data
