@@ -16,10 +16,8 @@ def load_data(url, in_format = 'csv'):
     return df
 
 # pull main df with SMR data
-if isinstance(st.session_state['main_data'],pd.core.frame.DataFrame):
-    main_df = st.session_state['main_data']
-else: # if not in session state load
-    main_df = load_data(st.secrets['all_associations'], 'parquet')
+if 'main_data' not in st.session_state:
+    st.session_state['main_data'] = load_data(st.secrets['all_associations'], 'parquet')
 
 # pull all sig (p < 0.05) SMR data (NOT ADJUSTED)
 if isinstance(st.session_state['mainsig_data'],pd.core.frame.DataFrame):
