@@ -94,6 +94,9 @@ with st.expander("Additional Data"):
     st.write("Therapeutic gene targets list: [Finan et al., 2017](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6321762/) and [Drug Gene Interaction Database - DGIdb](https://www.dgidb.org/)")
     st.write("Github with code: [NIH CARD Github](https://github.com/NIH-CARD/NDD_SMR)")
     st.write("Single Cell Data [Siletti et al (2022)](https://github.com/linnarsson-lab/adult-human-brain)")
+with st.expander("Data Downloads"):
+    st.write('Download source data')
+    st.write('Data is also available on [Google Drive](https://drive.google.com/drive/u/0/folders/16lB70BgRKA8yjXuAdW3OntHIrR8gqADO)')
 
         
 st.write("Data curated by NIH CARD and Data Tecnica International.")
