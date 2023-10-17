@@ -95,8 +95,10 @@ with st.expander("Additional Data"):
     st.write("Github with code: [NIH CARD Github](https://github.com/NIH-CARD/NDD_SMR)")
     st.write("Single Cell Data [Siletti et al (2022)](https://github.com/linnarsson-lab/adult-human-brain)")
 with st.expander("Data Downloads"):
-    st.write('Download source data')
-    st.write('Data is also available on [Google Drive](https://drive.google.com/drive/u/0/folders/16lB70BgRKA8yjXuAdW3OntHIrR8gqADO)')
+    st.write('Download SMR results data')
+    st.write('Data is available on [Google Drive](https://drive.google.com/drive/u/0/folders/16lB70BgRKA8yjXuAdW3OntHIrR8gqADO)')
+    st.subheader('Druggable Genes Data')
+    st.write('Download druggable genes and drugs data [here](https://drive.google.com/file/d/1H1tc01B2FHpCie1svvKSIt8nEa_Q7D0j/view?usp=drive_link)')
 
         
 st.write("Data curated by NIH CARD and Data Tecnica International.")
