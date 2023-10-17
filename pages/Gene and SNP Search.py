@@ -2,9 +2,12 @@ import streamlit as st
 import pandas as pd
 
 @st.cache_data
-def load_data(url, sheet_name="Sheet"):
-    sh = st.session_state['client_auth'].open_by_url(url)
-    df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
+def load_data(url, in_format = 'csv'):
+    # establish connection
+    conn = st.experimental_connection('gcs', type=FilesConnection)
+
+    # read in file
+    df = conn.read(url, input_format=in_format)
     return df
 
 def convert_df(df):
@@ -131,10 +134,11 @@ if 'gene_status' not in st.session_state:
 if 'snp_status' not in st.session_state:
     st.session_state['snp_status'] = 'not_run'
 
+# pull main df with SMR data
 if isinstance(st.session_state['main_data'],pd.core.frame.DataFrame):
     main_df = st.session_state['main_data']
-else:
-    main_df = load_data(st.secrets['simple_sig'])
+else: # if not in session state load
+    main_df = load_data(st.secrets['all_associations'], 'parquet')
 
 # genes
 main_gene_list = list(main_df['Gene'].unique())
