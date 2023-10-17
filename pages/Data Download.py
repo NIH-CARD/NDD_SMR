@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from st_files_connection import FilesConnection
 
-@st.cache_data
+@st.cache_data(show_spinner = False)
 def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
      return df.to_csv(index = False)
