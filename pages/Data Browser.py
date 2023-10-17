@@ -9,6 +9,14 @@ def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
      return df.to_csv(index = False)
 
+def load_data(url, in_format = 'csv'):
+    # establish connection
+    conn = st.experimental_connection('gcs', type=FilesConnection)
+
+    # read in file
+    df = conn.read(url, input_format=in_format)
+    return df
+
 def create_df(df, diseases, omics):
   # determine max possible options 
   dx_max = len(df['Disease'])
