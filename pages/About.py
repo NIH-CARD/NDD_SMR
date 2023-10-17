@@ -5,7 +5,7 @@ st.title('OmicSynth')
 
 st.write('This tool aims to provide users with the ability to navigate through the SMR Analysis results for our manuscript. Below we provide additional information on data used.')
 st.write("")
-with st.expander("GWAS summary statistics information"):
+with st.expander("**GWAS summary statistics information**"):
     st.write("""
     1. AD - [Bellenguez 2022](https://www.nature.com/articles/s41588-022-01024-z)
     2. ALS - [Nicolas 2019](https://pubmed.ncbi.nlm.nih.gov/29566793/)
@@ -14,7 +14,7 @@ with st.expander("GWAS summary statistics information"):
     5. PD - [Nalls 2019](https://pubmed.ncbi.nlm.nih.gov/31701892/)
     6. PSP - [Hoglinger 2011](https://pubmed.ncbi.nlm.nih.gov/21685912/)""")
 
-with st.expander("*-Omic Details"):
+with st.expander("** *-Omic Details**"):
     st.write("Omic Data Sources for limited data sets available in SMR ready format [here](https://yanglab.westlake.edu.cn/software/smr/#DataResource)")
     col1, col2= st.columns(2)
     with col1:
@@ -89,7 +89,7 @@ with st.expander("*-Omic Details"):
             st.write('Data is available in SMR ready format [here](https://yanglab.westlake.edu.cn/software/smr/#caQTLsummarydata)')
             st.write('- Bryois 2018 - Prefrontal cortex chromatin peaks')
             
-with st.expander("Additional Data"):
+with st.expander("**Additional Data**"):
     st.write("Reference Panel: [1000 Genomes Phase 3](https://www.internationalgenome.org/data-portal/data-collection/phase-3)")
     st.write("Therapeutic gene targets list: [Finan et al., 2017](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6321762/) and [Drug Gene Interaction Database - DGIdb](https://www.dgidb.org/)")
     st.write("Github with code: [NIH CARD Github](https://github.com/NIH-CARD/NDD_SMR)")
