@@ -14,7 +14,7 @@ with st.expander("**GWAS summary statistics information**"):
     5. PD - [Nalls 2019](https://pubmed.ncbi.nlm.nih.gov/31701892/)
     6. PSP - [Hoglinger 2011](https://pubmed.ncbi.nlm.nih.gov/21685912/)""")
 
-with st.expander("** *-Omic Details**"):
+with st.expander("**-Omic Details**"):
     st.write("Omic Data Sources for limited data sets available in SMR ready format [here](https://yanglab.westlake.edu.cn/software/smr/#DataResource)")
     col1, col2= st.columns(2)
     with col1:
