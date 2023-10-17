@@ -18,7 +18,7 @@ with st.expander("*-Omic Details"):
     st.write("Omic Data Sources for limited data sets available in SMR ready format [here](https://yanglab.westlake.edu.cn/software/smr/#DataResource)")
     col1, col2= st.columns(2)
     with col1:
-        st.header("""**eQTLs**""")
+        st.subheader("""**eQTLs**""")
         tgtex, tmeta, tothereqtl = st.tabs(["GTEx", "MetaBrain", "Other Sources"])
         with tgtex:
             tab1, tab2, tab3 = st.tabs(["Brain", "Other Tissues", "Data Access"])
@@ -68,7 +68,7 @@ with st.expander("*-Omic Details"):
                 - PsychENCODE
             """)
     with col2:
-        st.header("Other *-omics")
+        st.subheader("Other *-omics")
         tmqtl,tpqtl,tca = st.tabs(['mQTLs', 'pQTLs', 'caQTL'])
         with tmqtl:
             st.write('mQTL data available in SMR ready format [here](https://yanglab.westlake.edu.cn/software/smr/#mQTLsummarydata)')
@@ -94,8 +94,8 @@ with st.expander("Additional Data"):
     st.write("Therapeutic gene targets list: [Finan et al., 2017](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6321762/) and [Drug Gene Interaction Database - DGIdb](https://www.dgidb.org/)")
     st.write("Github with code: [NIH CARD Github](https://github.com/NIH-CARD/NDD_SMR)")
     st.write("Single Cell Data [Siletti et al (2022)](https://github.com/linnarsson-lab/adult-human-brain)")
-with st.expander("Data Downloads"):
-    st.write('Download SMR results data')
+with st.expander("**Data Downloads**"):
+    st.subheader('Download SMR results data')
     st.write('Data is available on [Google Drive](https://drive.google.com/drive/u/0/folders/16lB70BgRKA8yjXuAdW3OntHIrR8gqADO)')
     st.subheader('Druggable Genes Data')
     st.write('Download druggable genes and drugs data [here](https://drive.google.com/file/d/1H1tc01B2FHpCie1svvKSIt8nEa_Q7D0j/view?usp=drive_link)')
