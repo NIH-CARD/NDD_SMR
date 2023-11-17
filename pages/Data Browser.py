@@ -121,7 +121,7 @@ with st.container():
             st.session_state['filterdf'],
             gridOptions=gridOptions,
             data_return_mode='AS_INPUT', 
-            update_mode='MODEL_CHANGED', 
+            update_mode='NO_UPDATE', 
             fit_columns_on_grid_load=False,
             theme='streamlit', #Add theme color to the table
             enable_enterprise_modules=True,
