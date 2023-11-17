@@ -170,9 +170,8 @@ with st.form("Filter_Results"):
         # p < 2.95e-06 threshold
         if sig_thresh == sig_opt[1]:
             adj_hits_df = load_data(st.secrets['adjusted_sig'])
+            adj_hits_df = adj_hits_df.iloc[:, 1:]
             result_filter_df = create_df(adj_hits_df, diseases, omics)
-            if 'Omic.1' in result_filter_df.columns:
-                result_filter_df.drop(['Omic.1'], axis = 1, inplace = True) 
 
             # add adj_df to session state
             st.session_state['sig5_data'] = adj_hits_df
