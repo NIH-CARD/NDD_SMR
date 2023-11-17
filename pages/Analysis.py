@@ -182,7 +182,7 @@ with st.form("Filter_Results"):
             st.session_state['filter_submit'] = 'run'          
 
 if st.session_state['filter_submit'] == 'run':
-    st.dataframe(st.session_state['filterdf'], df.style.format(precision=10))
+    st.dataframe(st.session_state['filterdf'].style.format(precision=10))
 
     output_name = st.text_input('Please provide an output file name if you would like to download the results', placeholder = 'example.csv')
     st.session_state['filter_name'] = output_name
