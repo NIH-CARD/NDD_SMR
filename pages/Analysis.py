@@ -198,7 +198,8 @@ if st.session_state['filter_submit'] == 'run':
         ), 
         "p_HEIDI": st.column_config.NumberColumn(
             format="%f",
-        ))
+        )}
+        )
 
     output_name = st.text_input('Please provide an output file name if you would like to download the results', placeholder = 'example.csv')
     st.session_state['filter_name'] = output_name
