@@ -125,9 +125,8 @@ with st.container():
             fit_columns_on_grid_load=False,
             theme='streamlit', #Add theme color to the table
             enable_enterprise_modules=True,
-            height=500, 
-            width=750,
-            reload_data=True
+            height=700, 
+            width=1000,
         )
 
         data = grid_response['data']
