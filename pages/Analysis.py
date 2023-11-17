@@ -198,6 +198,12 @@ if st.session_state['filter_submit'] == 'run':
         ), 
         "p_HEIDI": st.column_config.NumberColumn(
             format="%f",
+        ), 
+        "p_GWAS": st.column_config.NumberColumn(
+            format="%f",
+        ), 
+        "p_eQTL": st.column_config.NumberColumn(
+            format="%f",
         )}
         )
 
