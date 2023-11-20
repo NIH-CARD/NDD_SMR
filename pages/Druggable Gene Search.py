@@ -1,10 +1,14 @@
 import streamlit as st
 import pandas as pd
+from st_files_connection import FilesConnection
 
-@st.cache(show_spinner = False)
-def load_data(url, sheet_name="Sheet"):
-    sh = st.session_state['client_auth'].open_by_url(url)
-    df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
+@st.cache_data(show_spinner = False)
+def load_data(url, in_format = 'csv'):
+    # establish connection
+    conn = st.experimental_connection('gcs', type=FilesConnection)
+
+    # read in file
+    df = conn.read(url, input_format=in_format)
     return df
 
 def convert_df(df):
@@ -91,7 +95,7 @@ with st.container():
     with st.form('Select Druggable Genes'):
         st.title('Druggable Gene Search')
 
-        st.write('Select genes availble in our aggregated database to obtain more information.')
+        st.write('Select genes availble in our aggregated database to obtain more information. The full database used can be downloaded in the "Data Download" tab.')
 
         # create drop down for user input
         gene_options = st.multiselect('Select from available genes', st.session_state['thera_genes'])

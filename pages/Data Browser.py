@@ -9,6 +9,14 @@ def convert_df(df):
      # IMPORTANT: Cache the conversion to prevent computation on every rerun
      return df.to_csv(index = False)
 
+def load_data(url, in_format = 'csv'):
+    # establish connection
+    conn = st.experimental_connection('gcs', type=FilesConnection)
+
+    # read in file
+    df = conn.read(url, input_format=in_format)
+    return df
+
 def create_df(df, diseases, omics):
   # determine max possible options 
   dx_max = len(df['Disease'])
@@ -53,10 +61,11 @@ if 'filterdf' not in st.session_state:
 if 'filter_submit' not in st.session_state:
     st.session_state['filter_submit'] = False
 
+# pull main df with SMR data
 if isinstance(st.session_state['main_data'],pd.core.frame.DataFrame):
     main_df = st.session_state['main_data']
-else:
-    main_df = load_data(st.secrets['simple_sig'])
+else: # if not in session state load
+    main_df = load_data(st.secrets['all_associations'], 'parquet')
 
 st.title('Data Browser')
 
@@ -112,13 +121,12 @@ with st.container():
             st.session_state['filterdf'],
             gridOptions=gridOptions,
             data_return_mode='AS_INPUT', 
-            update_mode='MODEL_CHANGED', 
+            update_mode='NO_UPDATE', 
             fit_columns_on_grid_load=False,
             theme='streamlit', #Add theme color to the table
             enable_enterprise_modules=True,
-            height=500, 
-            width=750,
-            reload_data=True
+            height=700, 
+            width=1000,
         )
 
         data = grid_response['data']

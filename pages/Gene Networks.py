@@ -16,7 +16,7 @@ if 'gene_results_run' not in st.session_state:
     st.session_state['gene_results_run'] = None
 
 st.title('Gene Network')
-st.write('Provide a list of genes to build a network from GeneMANIA and receive a link to the network.')
+st.write('Provide a list of genes to build a network from [GeneMANIA](https://genemania.org/) and receive a link to the network.')
 
 # user input - genes list
 genes_list = st.text_area('Input a list of genes (seperated by comma):')

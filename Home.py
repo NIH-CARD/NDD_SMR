@@ -7,6 +7,8 @@ import gspread
 from gspread_pandas import Spread, Client
 from google.oauth2.service_account import Credentials
 from PIL import Image
+from st_files_connection import FilesConnection
+
 
 if 'client_auth' not in st.session_state: # create session state variable for client auth 
         st.session_state['client_auth'] = None
@@ -34,8 +36,22 @@ def load_data(url, sheet_name="Sheet"):
     return df
 
 # load in unfiltered associations
+@st.cache_data(show_spinner = False)
 def create_main():
-    df = load_data(st.secrets['simple_sig'])
+    # establish connection
+    conn = st.experimental_connection('gcs', type=FilesConnection)
+
+    # read in file
+    df = conn.read("omicsynth/NDD_SMR_genes_all.parquet", input_format="parquet")
+    
+
+    return df
+@st.cache_data(show_spinner = False)
+def create_mainsig():
+    # establish connection
+    conn = st.experimental_connection('gcs', type=FilesConnection)
+    
+    df = conn.read("omicsynth/NDD_sig_allcol.csv", input_format="csv")
 
     return df
 
@@ -48,7 +64,9 @@ st.markdown("""Welcome to OmicSynth's Neurodegenerative Disorders functionl anal
 
 with st.spinner('Loading in data ... only happens once :)'):
     main_df = create_main()
+    mainsig_df = create_mainsig()
     st.session_state['main_data'] = main_df
+    st.session_state['mainsig_data'] = mainsig_df
     st.success('Done!')
 
 # add CARD logo
