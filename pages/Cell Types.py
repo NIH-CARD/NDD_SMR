@@ -1,17 +1,13 @@
 import streamlit as st
 import pandas as pd
 from PIL import Image
-from st_files_connection import FilesConnection
 
-@st.cache_data(show_spinner = False)
-def load_data(url, in_format = 'csv'):
-    # establish connection
-    conn = st.experimental_connection('gcs', type=FilesConnection)
-
-    # read in file
-    df = conn.read(url, input_format=in_format)
+def load_data(url, sheet_name="Sheet"):
+    sh = st.session_state['client_auth'].open_by_url(url)
+    df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
     return df
 
+#@st.cache_data
 # session state variables for smr data
 if 'mean_all_img' not in st.session_state: # create session state
         st.session_state['mean_all_img'] = None
