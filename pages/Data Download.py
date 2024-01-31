@@ -9,7 +9,7 @@ def convert_df(df):
 
 def load_data(url, in_format = 'csv'):
     # establish connection
-    conn = st.experimental_connection('gcs', type=FilesConnection)
+    conn = st.connection('gcs', type=FilesConnection)
 
     # read in file
     df = conn.read(url, input_format=in_format)

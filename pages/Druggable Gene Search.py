@@ -5,7 +5,7 @@ from st_files_connection import FilesConnection
 @st.cache_data(show_spinner = False)
 def load_data(url, in_format = 'csv'):
     # establish connection
-    conn = st.experimental_connection('gcs', type=FilesConnection)
+    conn = st.connection('gcs', type=FilesConnection)
 
     # read in file
     df = conn.read(url, input_format=in_format)

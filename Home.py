@@ -39,7 +39,7 @@ def load_data(url, sheet_name="Sheet"):
 @st.cache_data(show_spinner = False)
 def create_main():
     # establish connection
-    conn = st.experimental_connection('gcs', type=FilesConnection)
+    conn = st.connection('gcs', type=FilesConnection)
 
     # read in file
     df = conn.read("omicsynth/NDD_SMR_genes_all.parquet", input_format="parquet")
@@ -49,7 +49,7 @@ def create_main():
 @st.cache_data(show_spinner = False)
 def create_mainsig():
     # establish connection
-    conn = st.experimental_connection('gcs', type=FilesConnection)
+    conn = st.connection('gcs', type=FilesConnection)
     
     df = conn.read("omicsynth/NDD_sig_allcol.csv", input_format="csv")
 
