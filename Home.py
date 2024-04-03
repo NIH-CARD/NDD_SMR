@@ -74,7 +74,7 @@ card_img = Image.open('img/CARD-logo-white-print.png')
 #dti_img = Image.open('img/dti_img.jpeg')
 
 # updated DT logo
-dti_img = Image.open('img/DT_logo.jpeg')
+dti_img = Image.open('img/DT_logo.png')
 
 st.sidebar.image(card_img)
 st.sidebar.image(dti_img)
