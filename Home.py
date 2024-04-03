@@ -21,6 +21,6 @@ card_img = Image.open('img/CARD-logo-white-print.png')
 # updated DT logo
 dti_img = Image.open('img/DT_logo.png')
 
-st.sidebar.image(card_img)
-st.sidebar.image(dti_img)
+st.image(card_img)
+st.image(dti_img)
 
