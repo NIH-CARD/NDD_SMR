@@ -16,5 +16,5 @@ card_img = Image.open('img/CARD-logo-white-print.png')
 dti_img = Image.open('img/DT_logo.png')
 
 st.image(card_img, width=400)
-st.image(dti_img)
+st.image(dti_img, width=400)
 
